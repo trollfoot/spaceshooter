@@ -8,6 +8,9 @@ public class Powerup : MonoBehaviour
     private float _speed = 3.0f;
     [SerializeField] //0 = triple shot, 1 = speed boost, 2 = shield boost
     private int powerupID;
+    [SerializeField]
+    private AudioClip _clip;
+
     void Update()
     {
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
@@ -23,6 +26,11 @@ public class Powerup : MonoBehaviour
         if (other.tag == "Player")
         {
             Player player = other.transform.GetComponent<Player>();
+            AudioSource.PlayClipAtPoint(_clip, transform.position);
+          
+
+
+
             if (player != null)
             {
             switch(powerupID)
